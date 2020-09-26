@@ -1,12 +1,16 @@
 package br.com.helpetecnologia.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Produto implements Serializable{
@@ -20,6 +24,10 @@ public class Produto implements Serializable{
 	private float preco;
 	private String descricao;
 	private int qtda_estoque;	
+	
+	@ManyToMany
+	@JoinTable(name="PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name="cod_produto"), inverseJoinColumns = @JoinColumn(name = "cod_categoria"))
+	private List<Categoria> categorias = new ArrayList<>();
 	
 	public Produto() {
 		
@@ -72,6 +80,16 @@ public class Produto implements Serializable{
 
 	public void setQtda_estoque(int qtda_estoque) {
 		this.qtda_estoque = qtda_estoque;
+	}
+	
+	
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	@Override

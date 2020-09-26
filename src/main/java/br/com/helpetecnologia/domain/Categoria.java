@@ -1,11 +1,16 @@
 package br.com.helpetecnologia.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Categoria implements Serializable{
@@ -14,8 +19,11 @@ public class Categoria implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Integer cod_categoria;
 	private String nome;	
+	
+	@ManyToMany(mappedBy = "categorias")
+	private List<Produto> produtos = new ArrayList<>();
 	
 	
 	//Tem que ter o construtor padrão. Se não dár erro ao chamar o endpoint Categoria
@@ -25,16 +33,16 @@ public class Categoria implements Serializable{
 
 	public Categoria(Integer id, String nome) {
 		super();
-		this.id = id;
+		this.cod_categoria = id;
 		this.nome = nome;
 	}
 
 	public Integer getId() {
-		return id;
+		return cod_categoria;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.cod_categoria = id;
 	}
 
 	public String getNome() {
@@ -43,15 +51,22 @@ public class Categoria implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}	
+
+
+	public List<Produto> getProdutos() {
+		return produtos;
 	}
 
-
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((cod_categoria == null) ? 0 : cod_categoria.hashCode());
 		return result;
 	}
 
@@ -64,17 +79,17 @@ public class Categoria implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Categoria other = (Categoria) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (cod_categoria == null) {
+			if (other.cod_categoria != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!cod_categoria.equals(other.cod_categoria))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nome=" + nome + "]";
+		return "Categoria [id=" + cod_categoria + ", nome=" + nome + "]";
 	}
 	
 	

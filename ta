@@ -1,0 +1,47 @@
+[33mcommit 8d257763f02485128569349788b78e75683a2613[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: Luciano <lucianodialgue@gmail.com/>
+Date:   Sat Sep 26 14:14:15 2020 +0000
+
+    Criado o Recurso Produto, service, repository e domain
+
+[33mcommit 79a584e54c7909489fcc0ffd67386ee0abc0d01e[m
+Author: Luciano <lucianodialgue@gmail.com/>
+Date:   Sat Sep 26 13:50:16 2020 +0000
+
+    Crianto metodo de Intanciacao na classe Classe Aplication - Principal
+
+[33mcommit b2a4671cb7e9ac7a9d630ba979eeb2bd1683e6b4[m
+Author: Luciano <lucianodialgue@gmail.com/>
+Date:   Sat Sep 26 13:39:43 2020 +0000
+
+    Criado o Recurso Endereco, service, repository, domain
+
+[33mcommit fa2eb7e2110e7972a81d9295b60a48cf20843978[m
+Author: Luciano <lucianodialgue@gmail.com/>
+Date:   Sat Sep 26 05:07:30 2020 +0000
+
+    Criado Domain Cliente, Recurso Cliente, ClienteRepository e ClienteService
+
+[33mcommit 3a484d5dd547fb623036f18542dab369964c1570[m[33m ([m[1;32mmaster[m[33m)[m
+Author: Luciano <lucianodialgue@gmail.com/>
+Date:   Sat Sep 26 04:44:28 2020 +0000
+
+    Criando Repository e Service para Categoria
+
+[33mcommit e38bf1cfdf7674081825a4fcb1e656ed1a27decd[m
+Author: Luciano <lucianodialgue@gmail.com/>
+Date:   Sat Sep 26 04:12:53 2020 +0000
+
+    Criado o Banco de Dados e o mapeamento da Classe Categoria
+
+[33mcommit 04d55a026322cf70be3e8ebd3b763be259b20133[m[33m ([m[1;32mbranch_luciano[m[33m)[m
+Author: Luciano <lucianodialgue@gmail.com/>
+Date:   Sat Sep 26 03:47:26 2020 +0000
+
+    Testanto a primeira classe de dominio - categoria
+
+[33mcommit a6b380da48ded9e51acf41e698bd3d21aa21949c[m
+Author: Luciano <lucianodialgue@gmail.com/>
+Date:   Sat Sep 26 03:32:42 2020 +0000
+
+    Commit Inicial com recurso basico de categoria

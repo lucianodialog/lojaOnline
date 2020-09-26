@@ -26,8 +26,14 @@ public void run(String... args) throws Exception {
 
 	Categoria cat1 = new Categoria(null, "Livros");
 	Categoria cat2 = new Categoria(null, "Vídeo");
+	Categoria cat4 = new Categoria(null, "Informática");
+	Categoria cat5 = new Categoria(null, "Escritório");
+	
+	
 	
 	//categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+	
+	
 	
 	
 	
