@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Produto implements Serializable{
 
@@ -25,6 +27,7 @@ public class Produto implements Serializable{
 	private String descricao;
 	private int qtda_estoque;	
 	
+	@JsonBackReference //Quer dizer: Olha do outro lado da referência eu busco os objetos, e desse lado eu não busco mais
 	@ManyToMany
 	@JoinTable(name="PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name="cod_produto"), inverseJoinColumns = @JoinColumn(name = "cod_categoria"))
 	private List<Categoria> categorias = new ArrayList<>();

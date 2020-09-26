@@ -30,7 +30,6 @@ public void run(String... args) throws Exception {
 	Categoria cat5 = new Categoria(null, "Escritório");
 	
 	
-	
 	//categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 	
 	
