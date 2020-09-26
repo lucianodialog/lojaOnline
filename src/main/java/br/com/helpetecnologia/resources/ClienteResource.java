@@ -26,12 +26,9 @@ public class ClienteResource {
 	public ResponseEntity<?> ListarClientesId(@PathVariable Integer id) {
 		//o retorno ResponseEntity<T> e um tipo espeical que retorna todas as informações da requisição
 		//ResponseEntity<?>. A interrogação significa qualquer tipo
-		Cliente cliente = service.buscaclienteId(id);
+		Cliente cliente = service.buscaClienteId(id);
 		return ResponseEntity.ok(cliente);
 		 
 	}
-
-	
-	
 	
 }

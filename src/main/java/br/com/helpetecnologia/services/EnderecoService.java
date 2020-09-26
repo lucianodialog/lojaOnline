@@ -7,18 +7,20 @@ import org.springframework.stereotype.Service;
 
 import br.com.helpetecnologia.domain.Categoria;
 import br.com.helpetecnologia.domain.Cliente;
+import br.com.helpetecnologia.domain.Endereco;
 import br.com.helpetecnologia.repositories.CategoriaRepository;
 import br.com.helpetecnologia.repositories.ClienteRepository;
+import br.com.helpetecnologia.repositories.EnderecoRepository;
 
 @Service
-public class ClienteService {
+public class EnderecoService {
 	
 	@Autowired
-	ClienteRepository repo;
+	EnderecoRepository repo;
 	
-	public Cliente buscaClienteId(int id) {		
-		Optional<Cliente> cliente = repo.findById(id);
-		return cliente.orElse(null);		
+	public Endereco buscarEnderecoId(int id) {		
+		Optional<Endereco> endereco = repo.findById(id);
+		return endereco.orElse(null);		
 	}
 
 }

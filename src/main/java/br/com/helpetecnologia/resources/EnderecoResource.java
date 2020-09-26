@@ -11,40 +11,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.helpetecnologia.domain.Categoria;
+import br.com.helpetecnologia.domain.Cliente;
+import br.com.helpetecnologia.domain.Endereco;
 import br.com.helpetecnologia.services.CategoriaService;
+import br.com.helpetecnologia.services.ClienteService;
+import br.com.helpetecnologia.services.EnderecoService;
 
 @RestController
-@RequestMapping(value="/categorias")
-public class CategoriaResource {
+@RequestMapping(value="/enderecos")
+public class EnderecoResource {
 	
 	@Autowired
-	private CategoriaService service;
-	/*
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Categoria> ListarCategorias() {
-		/*
-		Categoria cat1 = new Categoria(1, "Informática");
-		Categoria cat2 = new Categoria(2, "Escritório");		
-		List<Categoria> lista_categorias = new ArrayList<>();
-		lista_categorias.add(cat1);
-		lista_categorias.add(cat2);
-		return lista_categorias;				
-		//return "Chamou categorias";
-		 
-	}
-	*/
-	
+	private EnderecoService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> ListarCategoriasId(@PathVariable Integer id) {
+	public ResponseEntity<?> ListarEnderecosId(@PathVariable Integer id) {
 		//o retorno ResponseEntity<T> e um tipo espeical que retorna todas as informações da requisição
 		//ResponseEntity<?>. A interrogação significa qualquer tipo
-		Categoria categoria = service.buscarCategoriaId(id);
-		return ResponseEntity.ok(categoria);
+		Endereco endereco = service.buscarEnderecoId(id);
+		return ResponseEntity.ok(endereco);
 		 
 	}
-
-	
-	
 	
 }
