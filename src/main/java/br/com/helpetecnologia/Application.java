@@ -27,7 +27,7 @@ public void run(String... args) throws Exception {
 	Categoria cat1 = new Categoria(null, "Livros");
 	Categoria cat2 = new Categoria(null, "Vídeo");
 	
-	categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+	//categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 	
 	
 	
