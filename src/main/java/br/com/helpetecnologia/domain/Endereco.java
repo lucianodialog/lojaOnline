@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Endereco implements Serializable{
@@ -22,7 +26,22 @@ public class Endereco implements Serializable{
 	private String cidade;
 	private String uf;
 	private String numero;
-	private Integer fk_cod_cliente;
+	
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name="fk_cod_cliente")
+	private Cliente cliente;
+	
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	
 	
 	public Endereco() {
 		
@@ -38,7 +57,7 @@ public class Endereco implements Serializable{
 		this.cidade = cidade;
 		this.uf = uf;
 		this.numero = numero;
-		this.fk_cod_cliente = fk_cod_cliente;
+		
 	}
 
 	public Integer getCod_endereco() {
@@ -97,13 +116,7 @@ public class Endereco implements Serializable{
 		this.numero = numero;
 	}
 
-	public Integer getFk_cod_cliente() {
-		return fk_cod_cliente;
-	}
-
-	public void setFk_cod_cliente(Integer fk_cod_cliente) {
-		this.fk_cod_cliente = fk_cod_cliente;
-	}
+	
 
 	@Override
 	public int hashCode() {

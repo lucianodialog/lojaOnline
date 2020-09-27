@@ -38,7 +38,7 @@ public class SwaggerConfig {
                 "API REST de Loja On-line.",
                 "1.0",
                 "Terms of Service",
-                new Contact("Luciano alexandre da Silva", "https://wwwcriawebmobile.com.br",
+                new Contact("Luciano alexandre da Silva", "https://www.criawebmobile.com.br",
                         "luciano_dialog@yahoo.com.br"),
                 "Apache License Version 2.0",
                 "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>()

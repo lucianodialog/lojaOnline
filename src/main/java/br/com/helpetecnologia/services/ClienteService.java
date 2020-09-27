@@ -5,8 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import br.com.helpetecnologia.domain.Categoria;
 import br.com.helpetecnologia.domain.Cliente;
 import br.com.helpetecnologia.repositories.ClienteRepository;
+import br.com.helpetecnologia.services.exception.ObjectNotFoundException;
 
 @Service
 public class ClienteService {
@@ -19,13 +22,19 @@ public class ClienteService {
 		 return cliente;		
 	}	
 
-	
+	/*
 	public Cliente buscaClienteId(int id) {		
 		Optional<Cliente> cliente = repo.findById(id);
 		return cliente.orElse(null);		
 	}
+	*/
 
-
+	public Cliente buscaClienteId(int id) {		
+		Optional<Cliente> cliente = repo.findById(id);	
+			return cliente.orElseThrow(() -> new ObjectNotFoundException(
+					"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));	
+	
+	}
 
 
 }
