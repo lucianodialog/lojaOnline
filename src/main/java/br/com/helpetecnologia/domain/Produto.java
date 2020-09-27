@@ -2,7 +2,9 @@ package br.com.helpetecnologia.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -26,6 +29,10 @@ public class Produto implements Serializable{
 	private float preco;
 	private String descricao;
 	private int qtda_estoque;	
+	
+	  //Não aceita itens repetidos
+	 @OneToMany(mappedBy = "id.produto")
+    private Set<ItemPedido> itens = new HashSet<>();
 	
 	@JsonBackReference //Quer dizer: Olha do outro lado da referência eu busco os objetos, e desse lado eu não busco mais
 	@ManyToMany
@@ -43,6 +50,25 @@ public class Produto implements Serializable{
 		this.preco = preco;
 		this.descricao = descricao;
 		this.qtda_estoque = qtda_estoque;
+	}
+	
+	
+	public List<Pedido> getPedidos(){
+		List<Pedido> lista = new ArrayList<>();
+		for(ItemPedido x : itens) {
+			lista.add(x.getPedido());
+		}
+		return lista;
+	}
+	
+	
+	
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
 	}
 
 	public Integer getCod_produto() {
@@ -119,6 +145,9 @@ public class Produto implements Serializable{
 			return false;
 		return true;
 	}
+
+	
+
 	
 	
 	
