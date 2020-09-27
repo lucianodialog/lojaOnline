@@ -1,12 +1,18 @@
 package br.com.helpetecnologia.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Cliente implements Serializable{
@@ -20,6 +26,21 @@ public class Cliente implements Serializable{
 	private String cpf;
 	private Date data_nacimento;
 	
+	
+	//@JsonManagedReference Evita referência cíclica e colocada aqui do lado que eu quero trazer os telefones de cada cliente
+	//@JsonManagedReference
+	@OneToMany(mappedBy="cliente")	
+	private List<Telefone> telefones = new ArrayList<>();
+	
+	
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
+	}
+
 	public Cliente() {
 		
 	}
