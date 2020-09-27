@@ -34,7 +34,7 @@ public class SwaggerConfig {
     private ApiInfo metaInfo() {
 
         ApiInfo apiInfo = new ApiInfo(
-                "Loja On-Lines API REST",
+                "Loja On-Line API REST - Desenvolvida Por Luciano Alexandre",
                 "API REST da Loja On-Line.",
                 "1.0",
                 "Terms of Service",
