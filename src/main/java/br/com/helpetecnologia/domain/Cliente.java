@@ -3,9 +3,7 @@ package br.com.helpetecnologia.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -26,6 +25,10 @@ public class Cliente implements Serializable{
 	private String nome;
 	private String cpf;
 	private Date data_nacimento;	
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy="cliente")	
@@ -126,6 +129,14 @@ public class Cliente implements Serializable{
 		} else if (!cod_cliente.equals(other.cod_cliente))
 			return false;
 		return true;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 	
 	

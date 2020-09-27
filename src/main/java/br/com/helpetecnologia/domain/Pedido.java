@@ -8,7 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Pedido implements Serializable{
@@ -23,6 +27,13 @@ public class Pedido implements Serializable{
     private String data_solicitacao;
     private String status_pedido;
     
+    
+   @JsonManagedReference
+   @ManyToOne
+   @JoinColumn(name = "cliente_id")
+   private Cliente cliente;
+    
+    
     //Não aceita itens repetidos
     @OneToMany(mappedBy = "id.pedido")
     private Set<ItemPedido> itens = new HashSet<>();
@@ -31,21 +42,40 @@ public class Pedido implements Serializable{
 		
 	}
 
+	
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+	
+	/*
 	public Pedido(Integer cod_pedido, Integer numero_nf, String data_solicitacao, String status_pedido) {
 		super();
 		this.cod_pedido = cod_pedido;
 		this.numero_nf = numero_nf;
 		this.data_solicitacao = data_solicitacao;
 		this.status_pedido = status_pedido;
-	}
-	
-	public Set<ItemPedido> getItens() {
-		return itens;
-	}
+	*/
+    
+    
 
+	
+	
 	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
+
+	public Pedido(Integer cod_pedido, Integer numero_nf, String data_solicitacao, String status_pedido,
+			Cliente cliente) {
+		super();
+		this.cod_pedido = cod_pedido;
+		this.numero_nf = numero_nf;
+		this.data_solicitacao = data_solicitacao;
+		this.status_pedido = status_pedido;
+		this.setCliente(cliente);
+	}
+
+	
+	
 
 	public Integer getCod_pedido() {
 		return cod_pedido;
@@ -104,6 +134,16 @@ public class Pedido implements Serializable{
 		} else if (!cod_pedido.equals(other.cod_pedido))
 			return false;
 		return true;
+	}
+
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 
