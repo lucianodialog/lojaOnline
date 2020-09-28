@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.helpetecnologia.domain.Categoria;
 import br.com.helpetecnologia.services.CategoriaService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value="/api")
@@ -27,6 +28,7 @@ public class CategoriaResource {
 	@Autowired
 	private CategoriaService service;	
 	
+	@ApiOperation(value="Retorna uma única Categoria.")
 	@RequestMapping(value="/categorias/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> ListarCategoriasId(@PathVariable Integer id) {
 		//o retorno ResponseEntity<T> e um tipo espeical que retorna todas as informações da requisição
@@ -36,6 +38,7 @@ public class CategoriaResource {
 		 
 	}
 	
+	@ApiOperation(value="Insere uma nova Categoria.")
 	@RequestMapping(value="/categorias/", method=RequestMethod.POST)
 	public ResponseEntity<Void> inserirCategoria(@RequestBody Categoria categoria) {	
 		categoria = service.insert(categoria);		
@@ -44,6 +47,7 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@ApiOperation(value="Atualiza uma Categoria.")
 	@RequestMapping(value="/categorias/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> atualizarCategoria(@RequestBody Categoria categoria, @PathVariable Integer id) {			
 		categoria.setId(id);
@@ -51,28 +55,19 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@ApiOperation(value="Deleta uma Categoria.")
 	@RequestMapping(value="/categorias/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> deletarCategoria(@PathVariable Integer id) {
 			service.deleteById(id);
 		return ResponseEntity.noContent().build();//Retorna a resposta sem conteúdo 
 	}
 	
-	
-	/*
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Categoria> ListarCategorias() {
-		
-		Categoria cat1 = new Categoria(1, "Informática");
-		Categoria cat2 = new Categoria(2, "Escritório");		
-		List<Categoria> lista_categorias = new ArrayList<>();
-		lista_categorias.add(cat1);
-		lista_categorias.add(cat2);
-		return lista_categorias;				
-		//return "Chamou categorias";
-		 
-	}
-	
-	*/
+	@ApiOperation(value="Retorna uma Lista de Categorias.")
+	@RequestMapping(value="/categorias/", method=RequestMethod.GET)
+	public ResponseEntity<List<?>> listarTodasCategorias() {
+		List<Categoria> lista_categorias = service.listarTodasCategorias();
+		return ResponseEntity.ok().body(lista_categorias);
+	}	
 	
 	
 }

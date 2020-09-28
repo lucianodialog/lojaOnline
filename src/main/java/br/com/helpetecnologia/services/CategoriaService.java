@@ -1,5 +1,6 @@
 package br.com.helpetecnologia.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,10 @@ public class CategoriaService {
 	}
 	*/
 	
-/*
-	
-
-	public List<Categoria> findAll() {
+	public List<Categoria> listarTodasCategorias() {
 		// TODO Auto-generated method stub		
 		return repo.findAll();
 	}
-	
-*/
 	
 	public Categoria buscarCategoriaId(int id) {		
 		Optional<Categoria> categoria = repo.findById(id);	
