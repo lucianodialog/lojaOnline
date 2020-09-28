@@ -11,6 +11,7 @@ import br.com.helpetecnologia.domain.Categoria;
 import br.com.helpetecnologia.repositories.CategoriaRepository;
 import br.com.helpetecnologia.services.exception.DataIntegrityException;
 import br.com.helpetecnologia.services.exception.ObjectNotFoundException;
+import dto.CategoriaDTO;
 
 @Service
 public class CategoriaService {
@@ -58,4 +59,10 @@ public class CategoriaService {
 		}
 		
 	}
+	
+	
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
+	}
+	
 }

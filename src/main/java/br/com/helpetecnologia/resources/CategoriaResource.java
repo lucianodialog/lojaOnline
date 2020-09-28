@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,6 +44,17 @@ public class CategoriaResource {
 	
 	@ApiOperation(value="Insere uma nova Categoria.")
 	@RequestMapping(value="/categorias/", method=RequestMethod.POST)
+	public ResponseEntity<Void> inserirCategoria(@Valid @RequestBody CategoriaDTO categoriaDTO) {	
+		Categoria categoria = service.fromDTO(categoriaDTO);
+		categoria = service.insert(categoria);		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("{id}").buildAndExpand(categoria.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+	
+	/*
+	@ApiOperation(value="Insere uma nova Categoria.")
+	@RequestMapping(value="/categorias/", method=RequestMethod.POST)
 	public ResponseEntity<Void> inserirCategoria(@RequestBody Categoria categoria) {	
 		categoria = service.insert(categoria);		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -52,6 +65,16 @@ public class CategoriaResource {
 	@ApiOperation(value="Atualiza uma Categoria.")
 	@RequestMapping(value="/categorias/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> atualizarCategoria(@RequestBody Categoria categoria, @PathVariable Integer id) {			
+		categoria.setId(id);
+		categoria = service.atualizarCategoria(categoria);
+		return ResponseEntity.noContent().build();
+	}
+	*/
+	
+	@ApiOperation(value="Atualiza uma Categoria.")
+	@RequestMapping(value="/categorias/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> atualizarCategoria(@Valid @RequestBody CategoriaDTO categoriaDTO, @PathVariable Integer id) {	
+		Categoria categoria = service.fromDTO(categoriaDTO);
 		categoria.setId(id);
 		categoria = service.atualizarCategoria(categoria);
 		return ResponseEntity.noContent().build();
@@ -74,7 +97,7 @@ public class CategoriaResource {
 	*/
 	
 	
-	@ApiOperation(value="Retorna uma Lista de Categorias.")
+	@ApiOperation(value="Retorna uma Lista de Categorias sem os produtos associados a ela.")
 	@RequestMapping(value="/categorias/", method=RequestMethod.GET)
 	public ResponseEntity<List<CategoriaDTO>> listarTodasCategorias() {
 		List<Categoria> lista_categorias = service.listarTodasCategorias();
