@@ -27,7 +27,7 @@ public class Endereco implements Serializable{
 	private String uf;
 	private String numero;
 	
-	@JsonBackReference
+	
 	@ManyToOne
 	@JoinColumn(name="fk_cod_cliente")
 	private Cliente cliente;

@@ -35,7 +35,8 @@ public class Produto implements Serializable{
 	 @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
 	
-	@JsonBackReference //Quer dizer: Olha do outro lado da referência eu busco os objetos, e desse lado eu não busco mais
+	//@JsonBackReference //Quer dizer: Olha do outro lado da referência eu busco os objetos, e desse lado eu não busco mais
+	  @JsonIgnore
 	@ManyToMany
 	@JoinTable(name="PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name="cod_produto"), inverseJoinColumns = @JoinColumn(name = "cod_categoria"))
 	private List<Categoria> categorias = new ArrayList<>();

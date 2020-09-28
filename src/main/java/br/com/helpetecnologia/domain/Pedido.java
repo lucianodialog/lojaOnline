@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Pedido implements Serializable{
 	
@@ -28,7 +26,7 @@ public class Pedido implements Serializable{
     private String status_pedido;
     
     
-   @JsonManagedReference
+  
    @ManyToOne
    @JoinColumn(name = "cliente_id")
    private Cliente cliente;

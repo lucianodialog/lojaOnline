@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Telefone implements Serializable{
@@ -22,7 +22,8 @@ public class Telefone implements Serializable{
     private char ddd;
     private String numero_telefone;
     
-    @JsonBackReference//Significa, do outro lado da associação já foram buscado os objetos, então agora eu não busco mais.    
+    //@JsonBackReference//Significa, do outro lado da associação já foram buscado os objetos, então agora eu não busco mais. 
+    @JsonIgnore
     @ManyToOne
 	@JoinColumn(name="fk_cliente")
     private Cliente cliente; 
