@@ -33,5 +33,28 @@ public class CategoriaService {
 		categoria.setId(null);
 		return repo.save(categoria);
 	}
+	
+	public Categoria atualizarCategoria(Categoria categoria) {
+		// TODO Auto-generated method stub
+		buscarCategoriaId(categoria.getId());//Chamado para fazer uma verificação se minha categoria existe
+		return repo.save(categoria);
+	}
+	/*
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
+		find(id);
+		try {
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir uma categoria que tem produtos");
+		}
 
+	}
+
+	public List<Categoria> findAll() {
+		// TODO Auto-generated method stub		
+		return repo.findAll();
+	}
+	
+*/
 }

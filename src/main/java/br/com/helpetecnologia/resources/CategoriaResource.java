@@ -25,23 +25,7 @@ import io.swagger.annotations.Api;
 public class CategoriaResource {
 	
 	@Autowired
-	private CategoriaService service;
-	
-	/*
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Categoria> ListarCategorias() {
-		
-		Categoria cat1 = new Categoria(1, "Informática");
-		Categoria cat2 = new Categoria(2, "Escritório");		
-		List<Categoria> lista_categorias = new ArrayList<>();
-		lista_categorias.add(cat1);
-		lista_categorias.add(cat2);
-		return lista_categorias;				
-		//return "Chamou categorias";
-		 
-	}
-	
-	*/
+	private CategoriaService service;	
 	
 	@RequestMapping(value="/categorias/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> ListarCategoriasId(@PathVariable Integer id) {
@@ -60,7 +44,29 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@RequestMapping(value="/categorias/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> atualizarCategoria(@RequestBody Categoria categoria, @PathVariable Integer id) {			
+		categoria.setId(id);
+		categoria = service.atualizarCategoria(categoria);
+		return ResponseEntity.noContent().build();
+	}
 	
+	
+	/*
+	@RequestMapping(method=RequestMethod.GET)
+	public List<Categoria> ListarCategorias() {
+		
+		Categoria cat1 = new Categoria(1, "Informática");
+		Categoria cat2 = new Categoria(2, "Escritório");		
+		List<Categoria> lista_categorias = new ArrayList<>();
+		lista_categorias.add(cat1);
+		lista_categorias.add(cat2);
+		return lista_categorias;				
+		//return "Chamou categorias";
+		 
+	}
+	
+	*/
 	
 	
 }
