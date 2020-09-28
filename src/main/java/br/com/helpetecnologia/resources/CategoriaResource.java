@@ -3,6 +3,7 @@ package br.com.helpetecnologia.resources;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.helpetecnologia.domain.Categoria;
 import br.com.helpetecnologia.services.CategoriaService;
+import dto.CategoriaDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -62,12 +64,23 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();//Retorna a resposta sem conteúdo 
 	}
 	
+	/*
 	@ApiOperation(value="Retorna uma Lista de Categorias.")
 	@RequestMapping(value="/categorias/", method=RequestMethod.GET)
 	public ResponseEntity<List<?>> listarTodasCategorias() {
 		List<Categoria> lista_categorias = service.listarTodasCategorias();
 		return ResponseEntity.ok().body(lista_categorias);
 	}	
+	*/
+	
+	
+	@ApiOperation(value="Retorna uma Lista de Categorias.")
+	@RequestMapping(value="/categorias/", method=RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> listarTodasCategorias() {
+		List<Categoria> lista_categorias = service.listarTodasCategorias();
+		List<CategoriaDTO> listaDto = lista_categorias.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());  
+		return ResponseEntity.ok().body(listaDto);
+	}
 	
 	
 }
